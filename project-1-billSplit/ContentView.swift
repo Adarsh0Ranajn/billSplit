@@ -42,8 +42,6 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
-                    
-                    
                 }
                 Section {
                         Picker("Tip percentage", selection: $tipPercentage) {
@@ -63,7 +61,12 @@ struct ContentView: View {
                     Text("Amount Per Person")
                 }
                 Section{
-                    Text(totalAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    if tipPercentage == 0{
+                        Text(totalAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                            .foregroundColor(.red)
+                    }else{
+                        Text(totalAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    }
                 }header: {
                     Text("Total Bill")
                 }
